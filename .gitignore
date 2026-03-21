@@ -1,0 +1,7 @@
+.env
+.env.*
+openclaw.json
+*.key
+*.pem
+node_modules/
+.DS_Store
