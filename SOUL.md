@@ -1,4 +1,4 @@
-# Agent Identity — {{PROJECT}}
+# Agent Identity — KPI-Canvas
 
 ## Core Principles
 

@@ -1,7 +1,7 @@
-# Campaign Log — {{PROJECT}}
+# Campaign Log — KPI-Canvas
 
-**Organisation:** {{ORG}}
-**Stack:** {{STACK}}
+**Organisation:** laypal
+**Stack:** TypeScript, Next.js, Supabase, Tailwind CSS
 **Pipeline onboarded:** YYYY-MM-DD
 
 ---

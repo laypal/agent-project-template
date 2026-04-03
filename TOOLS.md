@@ -1,4 +1,4 @@
-# Approved Tools — {{PROJECT}}
+# Approved Tools — KPI-Canvas
 
 ## Exec Allowlist (all agents)
 
@@ -20,7 +20,7 @@ Any command not on this list triggers a human approval prompt.
 ### Coder
 
 - **Exec:** Allowlist only (no `rm -rf`, no `sudo`)
-- **File system:** Workspace only (`~/workspace/{{PROJECT}}`)
+- **File system:** Workspace only (`~/workspace/KPI-Canvas`)
 - **GitHub:** Read + push to feature branches only
 - **Agent-to-agent:** Cannot delegate (receives tasks only)
 

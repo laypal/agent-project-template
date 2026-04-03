@@ -2,7 +2,7 @@ name: quality-gate
 description: Binary quality checks — run before PR creation. Fails pipeline on any error.
 args:
   project:
-    default: "{{PROJECT}}"
+    default: "KPI-Canvas"
 steps:
   - id: typecheck
     command: "cd /home/deploy/workspace/${project} && npx tsc --noEmit"

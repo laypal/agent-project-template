@@ -4,7 +4,7 @@ args:
   feature:
     required: true
   project:
-    default: "{{PROJECT}}"
+    default: "KPI-Canvas"
 steps:
   - id: checkout
     command: "cd /home/deploy/workspace/${project} && git checkout -b feat/${feature}"

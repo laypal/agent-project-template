@@ -1,10 +1,10 @@
-# Onboarding {{PROJECT}} to OpenClaw Pipeline
+# Onboarding KPI-Canvas to OpenClaw Pipeline
 
 ## Prerequisites
 
 - [ ] OpenClaw v2026.3.13+ running on VPS
 - [ ] GitHub CLI authenticated (`gh auth status`)
-- [ ] Repo cloned to `~/workspace/{{PROJECT}}`
+- [ ] Repo cloned to `~/workspace/KPI-Canvas`
 - [ ] Lobster + llm-task plugins enabled
 - [ ] Telegram bot connected
 
@@ -13,8 +13,8 @@
 ### 1. Clone and configure
 ```bash
 cd ~/workspace
-gh repo clone {{ORG}}/{{PROJECT}}
-cd {{PROJECT}}
+gh repo clone laypal/KPI-Canvas
+cd KPI-Canvas
 ```
 
 ### 2. Copy agent files
@@ -22,24 +22,24 @@ cd {{PROJECT}}
 If using the template repo:
 ```bash
 cd ~/agent-project-template
-./scripts/setup.sh {{PROJECT}} {{ORG}}
-cp AGENTS.md SOUL.md TOOLS.md CAMPAIGN.md ~/workspace/{{PROJECT}}/
+./scripts/setup.sh KPI-Canvas laypal
+cp AGENTS.md SOUL.md TOOLS.md CAMPAIGN.md ~/workspace/KPI-Canvas/
 ```
 
-Or copy manually from this repo and replace `{{PROJECT}}`, `{{ORG}}`, `{{STACK}}` tokens.
+Or copy manually from this repo and replace `KPI-Canvas`, `laypal`, `TypeScript, Next.js, Supabase, Tailwind CSS` tokens.
 
 ### 3. Create workspace symlinks
 
 Each agent workspace needs a symlink to the project directory:
 ```bash
 for agent in orchestrator coder reviewer qa pm; do
-  ln -sf /home/deploy/workspace/{{PROJECT}} ~/.openclaw/workspace-${agent}/{{PROJECT}}
+  ln -sf /home/deploy/workspace/KPI-Canvas ~/.openclaw/workspace-${agent}/KPI-Canvas
 done
 ```
 
 Verify:
 ```bash
-ls -la ~/.openclaw/workspace-orchestrator/{{PROJECT}}
+ls -la ~/.openclaw/workspace-orchestrator/KPI-Canvas
 ```
 
 ### 4. Copy pipeline files
@@ -53,7 +53,7 @@ Lobster resolves paths from the orchestrator workspace cwd, not `~/.openclaw/pip
 
 Send via Telegram:
 ```
-List all files in /home/deploy/workspace/{{PROJECT}}/src
+List all files in /home/deploy/workspace/KPI-Canvas/src
 ```
 
 Confirm file list is returned.
@@ -62,14 +62,14 @@ Confirm file list is returned.
 
 Send via Telegram:
 ```
-Run code-review pipeline for PR #1 in {{PROJECT}}
+Run code-review pipeline for PR #1 in KPI-Canvas
 ```
 
 Watch `oclogs` for the full orchestrator → reviewer → comment flow.
 
 ### 7. Commit agent files
 ```bash
-cd ~/workspace/{{PROJECT}}
+cd ~/workspace/KPI-Canvas
 git add AGENTS.md SOUL.md TOOLS.md CAMPAIGN.md
 git commit -m "docs: add agent pipeline configuration files"
 git push
