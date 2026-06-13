@@ -70,6 +70,16 @@ Feature specs live in `.openclaw/tasks/<feature-name>.md`. When implementing a f
 
 ---
 
+## Tool-Result Hygiene (framework convention)
+
+**Agents receive digests, not raw tool dumps.** Deterministic work — running tests, computing diffs — happens in shell pipeline steps that emit a compact result; agents spend tokens on judgment, not on re-reading logs.
+
+Per-repo scripts in `.openclaw/scripts/` (customise per stack):
+- `test-summary.sh` → prints `{"tests_passed":N,"tests_failed":N,"type_errors":N}`, no verbose logs. The `test` step calls it; falls back to the QA agent if absent.
+- `report-digest.sh <feature>` → prints commit + `git diff --stat` (file list only, never the full patch) + the test JSON to `/tmp/report-digest-<feature>.md`; PM summarises from it and must NOT run raw `git diff`.
+
+---
+
 ## Agent-Specific Instructions
 
 ### Coder
@@ -84,6 +94,7 @@ Feature specs live in `.openclaw/tasks/<feature-name>.md`. When implementing a f
 - SECOND: Check security, types, tests
 
 ### PM
+- Read the digest at `/tmp/report-digest-<feature>.md` (commit, files changed, test results) — do NOT run raw `git diff`
 - Summarise with: commit hash, files changed, requirements status, test results
 - Send detailed summary to Telegram
 

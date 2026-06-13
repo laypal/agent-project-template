@@ -13,6 +13,6 @@ steps:
   - id: review
     command: "openclaw agent --to agent:reviewer:main --message 'Review the latest changes in /home/deploy/workspace/${project} against main'"
   - id: test
-    command: "openclaw agent --to agent:qa:main --message 'Run the full test suite in /home/deploy/workspace/${project} and report results'"
+    command: "if [ -x /home/deploy/workspace/${project}/.openclaw/scripts/test-summary.sh ]; then /home/deploy/workspace/${project}/.openclaw/scripts/test-summary.sh | tee /tmp/test-${feature}.json; else openclaw agent --to agent:qa:main --message 'Run the full test suite in /home/deploy/workspace/${project} and report results as JSON {tests_passed,tests_failed,type_errors}'; fi"
   - id: report
-    command: "openclaw agent --to agent:pm:main --message 'Summarise pipeline result for feature ${feature} and send Telegram summary'"
+    command: "/home/deploy/workspace/${project}/.openclaw/scripts/report-digest.sh '${feature}' > /tmp/report-digest-${feature}.md 2>/dev/null || true; openclaw agent --to agent:pm:main --message 'Read /tmp/report-digest-${feature}.md (commit, files changed, test results) and summarise the pipeline result; send a Telegram summary. Do NOT run git diff — the digest already has the file list and test results.'"
